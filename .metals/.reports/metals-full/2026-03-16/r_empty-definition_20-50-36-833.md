@@ -1,3 +1,14 @@
+error id: file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java:java/net/ServerSocket#accept().
+file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java
+empty definition using pc, found symbol in pc: java/net/ServerSocket#accept().
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 1787
+uri: file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java
+text:
+```scala
 package com.adojos.app.http;
 
 import java.io.BufferedReader;
@@ -41,7 +52,7 @@ public class HttpServer {
             while (true) {
                 try {
                     System.out.println("Listo para recibir ...");
-                    Socket clientSocket = serverSocket.accept();
+                    Socket clientSocket = serverSocket.@@accept();
                     CLIENT_EXECUTOR.submit(() -> handleClient(clientSocket));
                 } catch (IOException e) {
                     System.err.println("Accept failed.");
@@ -213,3 +224,9 @@ public class HttpServer {
         }
     }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: java/net/ServerSocket#accept().

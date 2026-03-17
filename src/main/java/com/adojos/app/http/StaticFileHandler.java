@@ -4,7 +4,7 @@ import java.io.File;
 
 public class StaticFileHandler {
     private static final String DEFAULT_STATIC_FOLDER = "target/classes";
-    private static String staticFolder = DEFAULT_STATIC_FOLDER;
+    private static volatile String staticFolder = DEFAULT_STATIC_FOLDER;
 
     public static void setStaticFolder(String folder) {
         if (folder == null || folder.trim().isEmpty()) {

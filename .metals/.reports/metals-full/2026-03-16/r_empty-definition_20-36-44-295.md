@@ -1,3 +1,14 @@
+error id: file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java:java/util/concurrent/ConcurrentHashMap#
+file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java
+empty definition using pc, found symbol in pc: java/util/concurrent/ConcurrentHashMap#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 374
+uri: file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java
+text:
+```scala
 package com.adojos.app.http;
 
 import java.io.BufferedReader;
@@ -11,7 +22,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.@@ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -25,7 +36,8 @@ public class HttpServer {
     private static final Object ROUTE_LOADING_LOCK = new Object();
     private static final ExecutorService CLIENT_EXECUTOR = Executors.newFixedThreadPool(
             DEFAULT_WORKER_THREADS,
-            new ServerWorkerThreadFactory());
+            new ServerWorkerThreadFactory()
+    );
     private static boolean annotationRoutesLoaded = false;
 
     public static void main(String[] args) throws IOException, URISyntaxException {
@@ -213,3 +225,9 @@ public class HttpServer {
         }
     }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: java/util/concurrent/ConcurrentHashMap#

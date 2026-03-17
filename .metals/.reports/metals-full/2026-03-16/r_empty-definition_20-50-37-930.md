@@ -1,3 +1,14 @@
+error id: file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java:java/util/concurrent/Executors#newFixedThreadPool(+1).
+file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java
+empty definition using pc, found symbol in pc: java/util/concurrent/Executors#newFixedThreadPool(+1).
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 1008
+uri: file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java
+text:
+```scala
 package com.adojos.app.http;
 
 import java.io.BufferedReader;
@@ -23,7 +34,7 @@ public class HttpServer {
     private static final int DEFAULT_WORKER_THREADS = Math.max(4, Runtime.getRuntime().availableProcessors() * 2);
     private static final Map<String, WebMethod> ENDPOINTS = new ConcurrentHashMap<>();
     private static final Object ROUTE_LOADING_LOCK = new Object();
-    private static final ExecutorService CLIENT_EXECUTOR = Executors.newFixedThreadPool(
+    private static final ExecutorService CLIENT_EXECUTOR = Executors.@@newFixedThreadPool(
             DEFAULT_WORKER_THREADS,
             new ServerWorkerThreadFactory());
     private static boolean annotationRoutesLoaded = false;
@@ -213,3 +224,9 @@ public class HttpServer {
         }
     }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: java/util/concurrent/Executors#newFixedThreadPool(+1).

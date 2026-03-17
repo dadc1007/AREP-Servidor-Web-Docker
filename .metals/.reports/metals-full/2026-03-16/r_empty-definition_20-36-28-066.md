@@ -1,3 +1,14 @@
+error id: file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java:java/net/ServerSocket#
+file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java
+empty definition using pc, found symbol in pc: java/net/ServerSocket#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 195
+uri: file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java
+text:
+```scala
 package com.adojos.app.http;
 
 import java.io.BufferedReader;
@@ -5,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
+import java.net.@@ServerSocket;
 import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -25,7 +36,8 @@ public class HttpServer {
     private static final Object ROUTE_LOADING_LOCK = new Object();
     private static final ExecutorService CLIENT_EXECUTOR = Executors.newFixedThreadPool(
             DEFAULT_WORKER_THREADS,
-            new ServerWorkerThreadFactory());
+            new ServerWorkerThreadFactory()
+    );
     private static boolean annotationRoutesLoaded = false;
 
     public static void main(String[] args) throws IOException, URISyntaxException {
@@ -48,6 +60,7 @@ public class HttpServer {
                 }
             }
         } catch (IOException e) {
+            serverSocket = new ServerSocket(8080);
             System.err.println("Could not listen on port: 8080.");
             System.exit(1);
         }
@@ -213,3 +226,9 @@ public class HttpServer {
         }
     }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: java/net/ServerSocket#
