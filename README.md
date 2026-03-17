@@ -254,21 +254,12 @@ Ejecutar pruebas:
 mvn test
 ```
 
-## Estructura relevante
+## Evidencia de despliegue en AWS EC2
 
-- `src/main/java/com/adojos/app/App.java`
-- `src/main/java/com/adojos/app/ManualRoutesApp.java`
-- `src/main/java/com/adojos/app/CommandLineApp.java`
-- `src/main/java/com/adojos/app/http/HttpServer.java`
-- `src/main/java/com/adojos/app/http/HttpRequest.java`
-- `src/main/java/com/adojos/app/http/StaticFileHandler.java`
-- `src/main/java/com/adojos/app/http/WebMethod.java`
-- `src/main/java/com/adojos/app/context/AnnotationApplicationContext.java`
-- `src/main/java/com/adojos/app/controllers/GreetingController.java`
-- `src/main/java/com/adojos/app/controllers/HelloController.java`
-- `src/main/resources/webroot/public/index.html`
-- `src/test/java/com/adojos/app/AppTest.java`
-- `src/test/java/com/adojos/app/context/AnnotationApplicationContextTest.java`
-- `src/test/java/com/adojos/app/http/HttpRequestTest.java`
-- `src/test/java/com/adojos/app/http/HttpServerConcurrencyTest.java`
-- `src/test/java/com/adojos/app/http/StaticFileHandlerTest.java`
+### Consola EC2 — Docker corriendo en la instancia
+
+![Consola EC2 mostrando el contenedor Docker activo](assets/ec2-docker-running.png)
+
+### Navegador — Aplicación funcionando desde la instancia EC2
+
+![Navegador conectado a la instancia EC2 mostrando la respuesta del servidor](assets/ec2-browser-response.png)
