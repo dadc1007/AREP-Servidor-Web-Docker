@@ -8,6 +8,7 @@ import com.adojos.app.http.HttpServer;
 public class ManualRoutesApp {
     public static void main(String[] args) throws IOException, URISyntaxException {
         HttpServer.staticfiles("/webroot/public");
+        HttpServer.installShutdownHook();
 
         HttpServer.get("/App/hello", (req, res) -> "Hello " + req.getValues("name"));
         HttpServer.get("/App/pi", (req, res) -> String.valueOf(Math.PI));

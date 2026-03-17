@@ -1,3 +1,14 @@
+error id: file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java:java/util/concurrent/ExecutorService#shutdown().
+file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java
+empty definition using pc, found symbol in pc: java/util/concurrent/ExecutorService#shutdown().
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 10112
+uri: file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java
+text:
+```scala
 package com.adojos.app.http;
 
 import java.io.BufferedReader;
@@ -279,7 +290,7 @@ public class HttpServer {
             return;
         }
 
-        executor.shutdown();
+        executor.@@shutdown();
         try {
             if (!executor.awaitTermination(SHUTDOWN_TIMEOUT_SECONDS, TimeUnit.SECONDS)) {
                 executor.shutdownNow();
@@ -290,3 +301,9 @@ public class HttpServer {
         }
     }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: java/util/concurrent/ExecutorService#shutdown().

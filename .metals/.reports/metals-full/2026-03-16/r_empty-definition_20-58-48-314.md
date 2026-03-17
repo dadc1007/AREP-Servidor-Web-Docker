@@ -1,3 +1,14 @@
+error id: file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java:java/util/concurrent/ExecutorService#
+file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java
+empty definition using pc, found symbol in pc: java/util/concurrent/ExecutorService#
+empty definition using semanticdb
+empty definition using fallback
+non-local guesses:
+
+offset: 422
+uri: file:///C:/Users/dadic/Documentos/Universidad/Semestre%209/AREP/Corte%202/AREP-Servidor-Web-Docker/src/main/java/com/adojos/app/http/HttpServer.java
+text:
+```scala
 package com.adojos.app.http;
 
 import java.io.BufferedReader;
@@ -12,95 +23,44 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
+import java.util.concurrent.@@ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.adojos.app.context.AnnotationApplicationContext;
 
 public class HttpServer {
     private static final int DEFAULT_WORKER_THREADS = Math.max(4, Runtime.getRuntime().availableProcessors() * 2);
-    private static final int SHUTDOWN_TIMEOUT_SECONDS = 5;
     private static final Map<String, WebMethod> ENDPOINTS = new ConcurrentHashMap<>();
     private static final Object ROUTE_LOADING_LOCK = new Object();
-    private static final Object LIFECYCLE_LOCK = new Object();
-    private static final AtomicBoolean SHUTDOWN_HOOK_REGISTERED = new AtomicBoolean(false);
-
-    private static volatile ServerSocket activeServerSocket;
-    private static volatile boolean running;
-    private static ExecutorService clientExecutor;
+    private static final ExecutorService CLIENT_EXECUTOR = Executors.newFixedThreadPool(
+            DEFAULT_WORKER_THREADS,
+            new ServerWorkerThreadFactory());
     private static boolean annotationRoutesLoaded = false;
 
     public static void main(String[] args) throws IOException, URISyntaxException {
         loadAnnotationRoutes();
-        installShutdownHook();
         start();
     }
 
     public static void start() throws IOException, URISyntaxException {
-        synchronized (LIFECYCLE_LOCK) {
-            if (running) {
-                throw new IllegalStateException("Server is already running.");
-            }
-            clientExecutor = createExecutor();
-            running = true;
-        }
-
         try (ServerSocket serverSocket = new ServerSocket(8080)) {
-            activeServerSocket = serverSocket;
             System.out.println("Servidor concurrente escuchando en el puerto 8080 con "
                     + DEFAULT_WORKER_THREADS + " workers.");
 
-            while (running) {
+            while (true) {
                 try {
                     System.out.println("Listo para recibir ...");
                     Socket clientSocket = serverSocket.accept();
-                    ExecutorService executor = clientExecutor;
-                    if (executor == null || executor.isShutdown()) {
-                        clientSocket.close();
-                        continue;
-                    }
-                    executor.submit(() -> handleClient(clientSocket));
+                    CLIENT_EXECUTOR.submit(() -> handleClient(clientSocket));
                 } catch (IOException e) {
-                    if (running) {
-                        System.err.println("Accept failed.");
-                    }
-                } catch (RejectedExecutionException e) {
-                    System.err.println("Worker pool is shutting down. Request rejected.");
+                    System.err.println("Accept failed.");
                 }
             }
         } catch (IOException e) {
             System.err.println("Could not listen on port: 8080.");
             System.exit(1);
-        } finally {
-            activeServerSocket = null;
-            running = false;
-            shutdownExecutorGracefully();
-        }
-    }
-
-    public static void stop() {
-        running = false;
-
-        ServerSocket socketToClose = activeServerSocket;
-        if (socketToClose != null && !socketToClose.isClosed()) {
-            try {
-                socketToClose.close();
-            } catch (IOException e) {
-                System.err.println("Failed to close server socket cleanly: " + e.getMessage());
-            }
-        }
-
-        shutdownExecutorGracefully();
-    }
-
-    public static void installShutdownHook() {
-        if (SHUTDOWN_HOOK_REGISTERED.compareAndSet(false, true)) {
-            Runtime.getRuntime().addShutdownHook(new Thread(HttpServer::stop, "http-shutdown-hook"));
         }
     }
 
@@ -142,10 +102,6 @@ public class HttpServer {
 
     public static int getWorkerThreadCount() {
         return DEFAULT_WORKER_THREADS;
-    }
-
-    public static boolean isRunning() {
-        return running;
     }
 
     public static WebMethod getRoute(String path) {
@@ -263,30 +219,14 @@ public class HttpServer {
         @Override
         public Thread newThread(Runnable runnable) {
             Thread thread = new Thread(runnable, "http-worker-" + workerCounter.getAndIncrement());
+            thread.setDaemon(true);
             return thread;
         }
     }
-
-    private static ExecutorService createExecutor() {
-        return Executors.newFixedThreadPool(DEFAULT_WORKER_THREADS, new ServerWorkerThreadFactory());
-    }
-
-    private static void shutdownExecutorGracefully() {
-        ExecutorService executor = clientExecutor;
-        clientExecutor = null;
-
-        if (executor == null) {
-            return;
-        }
-
-        executor.shutdown();
-        try {
-            if (!executor.awaitTermination(SHUTDOWN_TIMEOUT_SECONDS, TimeUnit.SECONDS)) {
-                executor.shutdownNow();
-            }
-        } catch (InterruptedException e) {
-            executor.shutdownNow();
-            Thread.currentThread().interrupt();
-        }
-    }
 }
+```
+
+
+#### Short summary: 
+
+empty definition using pc, found symbol in pc: java/util/concurrent/ExecutorService#

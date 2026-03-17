@@ -6,6 +6,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         HttpServer.staticfiles("/webroot/public");
         HttpServer.loadAnnotationRoutes();
+        HttpServer.installShutdownHook();
         HttpServer.start();
     }
 }
