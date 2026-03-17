@@ -21,6 +21,7 @@ replay_pid*
 /.classpath
 /.project
 /.settings/
+/.metals/
 
 # OS files
 .DS_Store
